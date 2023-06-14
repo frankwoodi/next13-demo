@@ -3,9 +3,9 @@ import { Input } from "./(input)/Input";
 export interface ListProps {
   name: string;
   id: string;
-  done: boolean;
+  done?: boolean;
 }
-export default function Page({ name, id }: ListProps) {
+export default function Page() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
