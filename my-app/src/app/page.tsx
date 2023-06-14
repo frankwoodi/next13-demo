@@ -15,6 +15,9 @@ export default function Home() {
           <Link href="/todolist" className={buttonVariants()}>
             todolist
           </Link>
+          <Link href="/links" className={buttonVariants()}>
+            links
+          </Link>
         </div>
     </main>
   )

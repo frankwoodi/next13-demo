@@ -20,7 +20,7 @@ function Page({params}: PageProps) {
         <h1 className='text-primary text-5xl'> Page </h1>
         <span>ID: {params.page}</span>
         <span> What a world </span>
-        <Link className="color-primary"
+        <Link
         href="/"
         className={buttonVariants()}
         >Go back</Link>
