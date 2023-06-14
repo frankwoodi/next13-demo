@@ -1,14 +1,13 @@
 import { redirect } from "next/dist/server/api-utils";
-import { PageProps as IPage } from "../../../.next/types/app/layout";
 import { NextResponse } from "next/server";
 import Link from "next/link";
 import { buttonVariants } from "../../components/button";
-export interface PageProps extends IPage {
+export interface PageProps {
   params: {
     page: string;
   };
 }
-export default function Page({ params }: PageProps) {
+export default function Page({ params }: any) {
   const handleRedirect = () => {
     // let res = NextResponse.redirect('/')
   };
