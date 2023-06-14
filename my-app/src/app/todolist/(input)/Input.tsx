@@ -46,7 +46,7 @@ export function Input() {
       )
 }
 
-interface MyCheckboxProps extends CheckboxProps {
+export interface MyCheckboxProps extends CheckboxProps {
   disabled?: boolean
   text: string,
   checked: boolean,

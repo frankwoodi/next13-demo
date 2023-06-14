@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 
-interface ListProps {
+export interface ListProps {
     name: string,
     done?: boolean,
     note?: boolean
