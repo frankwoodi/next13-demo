@@ -1,0 +1,5 @@
+{
+	"devDependencies": {
+		"@types/lunr": "^2.3.4"
+	}
+}

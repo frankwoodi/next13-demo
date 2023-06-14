@@ -2,13 +2,12 @@
 import * as React from 'react'
 import { Input as InputComponent } from "@/components/input"
 import { Label } from "@/components/label"
-import { Checkbox as CheckboxComponent } from "@/components/checkbox"
-import React from "react"
+// import { Checkbox as CheckboxComponent } from "@/components/checkbox"
 import { useToast } from "@/components/use-toast"
-
+import lunr from "lunr"
 interface SearchContextProps {
     fields: string[],
-    content: unknown[]
+    content: object[]
 }
 
 const searchContext = ({fields, content}: SearchContextProps) => {
@@ -28,26 +27,26 @@ const searchContext = ({fields, content}: SearchContextProps) => {
     return (word: string) => idx.search(word)
 }
 
-function Search({
+function Search<T extends { id: string }>({
     content: initialContent
-}: {content: unknown[]}) {
+}: {content: T[]}) {
     const content = initialContent;
-    const toast = useToast()
+    const {toast} = useToast()
     const [input, setInput] = React.useState("")
-    const [matched, setMatched] = React.useState<unknown>()
+    const [matched, setMatched] = React.useState<(T | {})[]>()
     const search = searchContext({
         fields: ["slug", "url"],
         content: content
     })
 
-    const handleKeyPress = (e) => {
+    const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
 
         if (e.key === "Enter") {
             const res = search(input)
 
             if (res.length < 1) {
                 toast({
-                    description: input + "Not found"
+                    description: input + " Not found"
                 })
                 return;
             }
@@ -55,11 +54,11 @@ function Search({
             const contentRes = res
             .map(result => {
                 for (const c of content) {
-                    if (c.id === result)
-                        return c
+                    if (c?.id === result.ref)
+                        return {...c, score: result.score}
                 }
 
-                return {}
+                return {} as T
             })
             .filter(c => c?.id)
 
@@ -78,7 +77,7 @@ function Search({
                   onKeyDown={handleKeyPress}
                   />
                   <p className="text-sm text-muted-foreground">Press enter to search</p>
-                  {JSON.stringify(contentRes)}
+                  {JSON.stringify(matched)}
         </div>
     )
 }

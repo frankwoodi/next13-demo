@@ -47,6 +47,9 @@ dependencies:
   lucide-react:
     specifier: ^0.244.0
     version: 0.244.0(react@18.2.0)
+  lunr:
+    specifier: ^2.3.9
+    version: 2.3.9
   nanoid:
     specifier: ^4.0.2
     version: 4.0.2
@@ -2191,6 +2194,10 @@ packages:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /lunr@2.3.9:
+    resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
     dev: false
 
   /merge-stream@2.0.0:
